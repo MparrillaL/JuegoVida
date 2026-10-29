@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simulador interactivo del Juego de la Vida de John Conway.">
+  <title>Juego de la Vida · Conway</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- type="module" permite usar import/export y se ejecuta tras cargar el HTML -->
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <span class="brand__logo" aria-hidden="true"></span>
+      <div>
+        <h1 class="brand__title">Juego de la Vida</h1>
+        <p class="brand__subtitle">Autómata celular de John Conway</p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat__label">Generación</span>
+        <span class="stat__value" id="stat-generation">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat__label">Población</span>
+        <span class="stat__value" id="stat-population">0</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="board" id="board-container" aria-label="Tablero de juego">
+      <canvas id="board"></canvas>
+    </section>
+
+    <aside class="panel">
+      <section class="panel__section">
+        <h2 class="panel__title">Controles</h2>
+        <div class="controls">
+          <button type="button" id="btn-play" class="btn btn--primary" aria-pressed="false">Iniciar</button>
+          <button type="button" id="btn-step" class="btn">Paso</button>
+          <button type="button" id="btn-random" class="btn">Aleatorio</button>
+          <button type="button" id="btn-clear" class="btn btn--danger">Limpiar</button>
+        </div>
+
+        <label class="field">
+          <span class="field__label">
+            Velocidad <output id="speed-value" for="speed">10 gen/s</output>
+          </span>
+          <input type="range" id="speed" min="1" max="60" value="10">
+        </label>
+
+        <label class="toggle">
+          <input type="checkbox" id="wrap" checked>
+          <span>Bordes conectados (toroide)</span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="grid" checked>
+          <span>Mostrar cuadrícula</span>
+        </label>
+      </section>
+
+      <section class="panel__section">
+        <h2 class="panel__title">Patrones</h2>
+        <select id="pattern" class="select">
+          <option value="">Elige un patrón…</option>
+        </select>
+        <p class="hint">Haz clic o arrastra sobre el tablero para dibujar celdas.</p>
+      </section>
+
+      <section class="panel__section">
+        <h2 class="panel__title">Reglas</h2>
+        <ol class="rules">
+          <li>Una célula viva con <strong>2 o 3</strong> vecinas sobrevive.</li>
+          <li>Una célula muerta con <strong>exactamente 3</strong> vecinas nace.</li>
+          <li>En cualquier otro caso, la célula muere o sigue muerta.</li>
+        </ol>
+      </section>
+
+      <section class="panel__section">
+        <h2 class="panel__title">Atajos</h2>
+        <ul class="shortcuts">
+          <li><kbd>Espacio</kbd> Iniciar / pausar</li>
+          <li><kbd>N</kbd> Siguiente generación</li>
+          <li><kbd>R</kbd> Aleatorio</li>
+          <li><kbd>C</kbd> Limpiar</li>
+        </ul>
+      </section>
+    </aside>
+  </main>
+</body>
+</html>
